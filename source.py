@@ -9,9 +9,9 @@ class polygon:
         print("Layer: ",self.layer)
         print("Co-ordinate: ",self.ordinates)
 
-file=open("C:/Users/geetha/OneDrive/Documents/codes visual/Projects/KLA/Data/Milestone_Input/Milestone_Input/Milestone 5/Source.txt","r")
-file3=open("C:/Users/geetha/OneDrive/Documents/codes visual/Projects/KLA/Data/Milestone_Input/Milestone_Input/Milestone 5/POI.txt","r")
-file2=open("Output5.txt",'w')
+file=open("C:/Users/geetha/OneDrive/Documents/codes visual/Projects/KLA/Data/Milestone_Input/Milestone_Input/Milestone 6/Source.txt","r")
+file3=open("C:/Users/geetha/OneDrive/Documents/codes visual/Projects/KLA/Data/Milestone_Input/Milestone_Input/Milestone 6/POI.txt","r")
+file2=open("Output6.txt",'w')
 
 object_List=[]
 test_object=None 
@@ -92,7 +92,7 @@ def checkFunction(List1,List2):
 polygon_create()
 content=content3
 file2.close()
-file2=open("Output5.txt",'w')
+file2=open("Output6.txt",'w')
 polygon_create()
 
 test_object=object_List[-1]
@@ -118,8 +118,8 @@ for objects in object_List:
         result_List.append(new)
 file2.close()
 print(len(result_List))
-file2=open("Output5.txt",'w')
-file=open("C:/Users/geetha/OneDrive/Documents/codes visual/Projects/KLA/Data/Milestone_Input/Milestone_Input/Milestone 5/Source.txt",'r').read() 
+file2=open("Output6.txt",'w')
+file=open("C:/Users/geetha/OneDrive/Documents/codes visual/Projects/KLA/Data/Milestone_Input/Milestone_Input/Milestone 6/Source.txt",'r').read() 
 content=file.split('\n')
 enter=0
 for i in np.arange(len(content)): 
