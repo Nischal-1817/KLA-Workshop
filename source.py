@@ -9,9 +9,9 @@ class polygon:
         print("Layer: ",self.layer)
         print("Co-ordinate: ",self.ordinates)
 
-file=open("C:/Users/geetha/OneDrive/Documents/codes visual/Projects/KLA/Data/Milestone_Input/Milestone_Input/Milestone 2/Source.txt","r")
-file3=open("C:/Users/geetha/OneDrive/Documents/codes visual/Projects/KLA/Data/Milestone_Input/Milestone_Input/Milestone 2/POI.txt","r")
-file2=open("Output2.txt",'w')
+file=open("C:/Users/geetha/OneDrive/Documents/codes visual/Projects/KLA/Data/Milestone_Input/Milestone_Input/Milestone 3/Source.txt","r")
+file3=open("C:/Users/geetha/OneDrive/Documents/codes visual/Projects/KLA/Data/Milestone_Input/Milestone_Input/Milestone 3/POI.txt","r")
+file2=open("Output3.txt",'w')
 
 object_List=[]
 test_object=None 
@@ -53,31 +53,55 @@ def polygon_create():
                     object.ordinates=List
                     object_List.append(object)
                 i+=1   
+def find_gcd(x, y):
+    while(y):
+        x, y = y, x % y
+  
+    return x
+
+def dist(List1,List2): 
+    return ((List2[1]-List1[1])**2+(List2[0]-List1[0])**2)
+def checkFunction(List1,List2): 
+    dist1=[]
+    dist2=[]
+    for point1 in List1:
+        for point2 in List1: 
+            if(point1!=point2):
+                dist1.append(dist(point1,point2))
+    for point1 in List2:
+        for point2 in List2: 
+            if(point1!=point2):
+                dist2.append(dist(point1,point2))
+    gcd=find_gcd(dist1[0],dist1[1])
+    for i in range(2,len(dist1)):
+        gcd=find_gcd(gcd,dist1[i])
+
+    gcd1=find_gcd(dist2[0],dist2[1])
+    for i in range(2,len(dist2)):
+        gcd1=find_gcd(gcd1,dist2[i])
+
+    for i in range(len(dist1)): 
+        dist1[i]/=gcd 
+    for i in range(len(dist2)):
+        dist2[i]/=gcd1
+
+    if(set(dist1)==set(dist2)):
+        return True 
+    return False 
 
 polygon_create()
 content=content3
 file2.close()
-file2=open("Output2.txt",'w')
+file2=open("Output3.txt",'w')
 polygon_create()
 
 test_object=object_List[-1]
 object_List.pop() 
 
-List2=[]
-x,y=test_object.ordinates[0]
-for x1,y1 in test_object.ordinates: 
-    List2.append([x1-x,y1-y])
-
-test_object.ordinates=List2
-
+print(test_object.ordinates)
 result_List=[] 
 for objects in object_List: 
-    List2=[]
-    x,y=objects.ordinates[0]
-    for x1,y1 in objects.ordinates: 
-        List2.append([x1-x,y1-y])
-
-    if(List2==test_object.ordinates):
+    if(checkFunction(test_object.ordinates,objects.ordinates)):
         new=[]
         new.append('boundary')
         new.append('\n')
@@ -94,7 +118,7 @@ for objects in object_List:
         result_List.append(new)
 file2.close()
 print(len(result_List))
-file2=open("Output2.txt",'w')
+file2=open("Output3.txt",'w')
 file=open("C:/Users/geetha/OneDrive/Documents/codes visual/Projects/KLA/Data/Milestone_Input/Milestone_Input/Milestone 2/Source.txt",'r').read() 
 content=file.split('\n')
 enter=0
